@@ -13,3 +13,10 @@ def test_single_char_string_should_return_number():
 def test_two_numbers_should_return_sum():
     numbers = "1,2"
     assert add(numbers) == 3
+
+
+def test_multiple_numbers_should_return_sum():
+    numbers = "1,2,3,4,5"
+    assert add(numbers) == 15
+
+

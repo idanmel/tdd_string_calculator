@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tdd_practice.iml" filepath="$PROJECT_DIR$/.idea/tdd_practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tdd_string_calculator.iml" filepath="$PROJECT_DIR$/.idea/tdd_string_calculator.iml" />
     </modules>
   </component>
 </project>
