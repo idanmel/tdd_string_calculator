@@ -20,3 +20,5 @@ def test_multiple_numbers_should_return_sum():
     assert add(numbers) == 15
 
 
+def test_newline_delimiter_works():
+    assert add('1\n2,3') == 6
