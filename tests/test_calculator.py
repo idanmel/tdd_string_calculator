@@ -22,3 +22,7 @@ def test_multiple_numbers_should_return_sum():
 
 def test_newline_delimiter_works():
     assert add('1\n2,3') == 6
+
+
+def test_different_delimiters():
+    assert add('//;\n1;2') == 3
