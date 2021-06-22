@@ -14,10 +14,22 @@ def replace_new_line_with_comma(s):
     return new_string
 
 
+def get_numbers(numbers):
+    return [int(x) for x in numbers]
+
+
+def validate_numbers(numbers):
+    negatives = [str(x) for x in numbers if x < 0]
+    if negatives:
+        raise ValueError("negatives not allowed %s" % ", ".join(negatives))
+
+
 def add(numbers):
     if numbers:
-        numbers = normalize_numbers_from_string(numbers)
-        numbers = replace_new_line_with_comma(numbers)
-        numbers = numbers.split(",")
-        return sum(int(x) for x in numbers)
+        normalized_numbers = normalize_numbers_from_string(numbers)
+        comma_numbers = replace_new_line_with_comma(normalized_numbers)
+        split_numbers = comma_numbers.split(",")
+        numbers = get_numbers(split_numbers)
+        validate_numbers(numbers)
+        return sum(numbers)
     return 0
