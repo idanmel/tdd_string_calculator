@@ -26,3 +26,15 @@ def test_newline_delimiter_works():
 
 def test_different_delimiters():
     assert add('//;\n1;2') == 3
+    
+    
+def test_not_allow_negatives():
+    with pytest.raises(Exception) as e:
+        add("-1")
+    assert str(e.value) == "negatives not allowed -1"
+
+
+def test_multiple_negatives():
+    with pytest.raises(Exception) as e:
+        add("-1,-2,4,-5")
+    assert str(e.value) == "negatives not allowed -1, -2, -5"
