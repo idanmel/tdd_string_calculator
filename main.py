@@ -1,9 +1,24 @@
 
+def get_multichar_delimiter(s):
+    last_par_index = s.index(']')
+    return ''.join(s[3:last_par_index])
+
+
+def drop_delimiter_frame(s, delimiter, multi=False):
+    if multi:
+        return s.replace('//[' + delimiter + ']\n', '')
+    return s.replace('//' + delimiter + '\n', '')
+
+
 def normalize_numbers_from_string(s):
     result = s
     if s.startswith('//'):
-        delimiter = s[2]
-        s = s.replace('//' + delimiter + '\n', '')
+        try:
+            delimiter = get_multichar_delimiter(s)
+            s = drop_delimiter_frame(s, delimiter, multi=True)
+        except ValueError:
+            delimiter = s[2]
+            s = drop_delimiter_frame(s, delimiter)
         result = s.replace(delimiter, ',')
 
     return result
@@ -31,5 +46,13 @@ def add(numbers):
         split_numbers = comma_numbers.split(",")
         numbers = get_numbers(split_numbers)
         validate_numbers(numbers)
-        return sum(numbers)
+        valid_numbers = [number for number in numbers if number <= 1000]
+        return sum(valid_numbers)
     return 0
+
+
+# sum -> reduce [...] fn(1,2), fn(2,3)
+# sum -> reduce + [1,2,3,4,5], [3,3,4,5], [6,4,5] [10,5] 15
+# map -> [1,2,3,4,5] [1,4,9,16,25] [3,6,9,12,15] [number * 3 for number in numbers]
+# filter -> [1,2,3,4,5] x < 4 [number for number in numbers if number < 4] == [1,2,3]
+
